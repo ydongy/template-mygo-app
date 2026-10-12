@@ -19,6 +19,7 @@ This repository is a **GitHub template**. The product is called `Template` here 
 
 - One native window on macOS, Windows and Linux (amd64 and arm64), built with [MyGo](https://github.com/egoist/mygo); no frontend toolchain.
 - A localized counter example with interaction tests, and a native update window.
+- A design system: the [design language](docs/design.md) (native first, semantic colors and dark mode, component choice, accessibility, motion, localization), [design tokens](design/tokens.md) and [mockups](design/screens/example-appearance.html) in light and dark.
 - One command (`scripts/check.sh --cross`) runs gofmt, `go mod tidy`, vet, tests, script tests and cross-compilation for six targets.
 - Version bump script, redacted secret scan and a manual local packaging workflow.
 - Two starting points chosen at init time: an open-source (MIT) project or a closed-source product skeleton.
@@ -85,7 +86,7 @@ See [.template/README.md](.template/README.md).
 | `go.mod`, `go.sum`, `.go-version` | Pinned Go, MyGo and CLI; no frontend toolchain |
 | `mygo.json`, `resources/` | Packaging configuration and shipped dependency notices |
 | `scripts/` | Version bump, checks, redacted secret scan and local packaging |
-| `docs/`, `design/` | Design language, architecture decision records and mockups |
+| `docs/`, `design/` | Design language (`docs/design.md`), design tokens, mockups and architecture decision records |
 | `.github/workflows/` | `ci.yml`, `pr-title.yml` and a manual packaging workflow |
 
 ## Development
