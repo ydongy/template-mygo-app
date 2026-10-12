@@ -83,7 +83,7 @@ def scan_line(line: str) -> list[tuple[str, str]]:
 
 
 def scan_history() -> tuple[list[str], list[str]]:
-    secrets: list[str] = []
+    findings: list[str] = []
     personal: dict[str, set[str]] = {}
     proc = subprocess.Popen(
         ["git", "log", "--all", "-p", "--no-color", "--format=@@@%h", "-U0", "--no-ext-diff", "--text"],
@@ -105,7 +105,7 @@ def scan_history() -> tuple[list[str], list[str]]:
             for name, shown in scan_line(line[1:]):
                 if path.startswith(ALLOW_PATHS):
                     continue
-                secrets.append(f"{commit} {path}:{line_no} {name} {shown}")
+                findings.append(f"{commit} {path}:{line_no} {name} {shown}")
             for name, pattern in PERSONAL.items():
                 for m in pattern.finditer(line[1:]):
                     personal.setdefault(name, set()).add(f"{path}")
@@ -113,7 +113,7 @@ def scan_history() -> tuple[list[str], list[str]]:
         raise RuntimeError("git history scan failed")
     summary = [f"{name}: {len(files)} file(s): " + ", ".join(sorted(files)[:6]) + ("…" if len(files) > 6 else "")
                for name, files in sorted(personal.items())]
-    return sorted(set(secrets)), summary
+    return sorted(set(findings)), summary
 
 
 def printable_strings(data: bytes) -> list[str]:
@@ -145,17 +145,17 @@ def main() -> int:
     if args.path:
         if not args.path.exists():
             parser.error("artifact path does not exist")
-        secrets, notes = scan_path(args.path, args.forbid), []
+        findings, notes = scan_path(args.path, args.forbid), []
         label = f"artifact {args.path}"
     else:
-        secrets, notes = scan_history()
+        findings, notes = scan_history()
         label = "git history (all refs)"
     print(f"Scanned {label}.")
     for item in notes:
         print("note:", item)
-    if secrets:
-        print(f"FOUND {len(secrets)} credential-like match(es) (values redacted):")
-        for item in secrets:
+    if findings:
+        print(f"FOUND {len(findings)} credential-like match(es) (values redacted):")
+        for item in findings:
             print(" ", item)
         return 1
     print("No credential-like patterns found (pattern scan only).")
