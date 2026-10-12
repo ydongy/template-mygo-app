@@ -20,6 +20,7 @@ Template 是使用 Go 和 [MyGo](https://github.com/egoist/mygo) 原生 UI 编�
 - 单一原生窗口，支持 macOS 12+、Windows 10/11 和带 GTK 3 的 Linux（amd64 与 arm64）；无 WebView、HTML 或 Node。
 - 跟随系统语言，所有界面文字都在内嵌的文案目录中。
 - 支持原生更新窗口。
+- 成文的设计语言（[docs/design.md](docs/design.md)）、[设计令牌](design/tokens.md)，以及亮/暗两种外观的[原型](design/screens/example-appearance.html)。
 
 ## 环境要求
 

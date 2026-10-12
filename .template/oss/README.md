@@ -21,6 +21,7 @@ current baseline is a counter demonstration; replace it with your app.
 - One native window on macOS 12+, Windows 10/11 and Linux with GTK 3 (amd64 and arm64); no WebView, HTML or Node.
 - Follows the system language; all UI text lives in an embedded catalog.
 - Native update window support.
+- A documented design language ([docs/design.md](docs/design.md)), [design tokens](design/tokens.md) and [mockups](design/screens/example-appearance.html) in light and dark.
 
 ## Requirements
 

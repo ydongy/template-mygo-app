@@ -18,6 +18,7 @@
 
 - 基于 [MyGo](https://github.com/egoist/mygo) 的原生窗口，覆盖 macOS、Windows 和 Linux（amd64 与 arm64），无需前端工具链。
 - 带本地化的计数器示例及交互测试，以及原生更新窗口。
+- 设计体系：[设计语言](docs/design.md)（原生优先、语义色与暗色模式、组件选用、可访问性、动效、本地化）、[设计令牌](design/tokens.md)和亮/暗两种外观的[原型](design/screens/example-appearance.html)。
 - 一条命令 `scripts/check.sh --cross` 完成 gofmt、`go mod tidy`、vet、测试、脚本测试和六个目标平台的交叉编译。
 - 版本号脚本、脱敏的密钥扫描，以及手动触发的本地打包 workflow。
 - 初始化时二选一：开源（MIT）项目，或闭源产品骨架。
@@ -83,7 +84,7 @@ scripts/init.sh <Name> <domain> [--license mit|proprietary] [--owner <github-use
 | `go.mod`、`go.sum`、`.go-version` | 固定版本的 Go、MyGo 与 CLI；无前端工具链 |
 | `mygo.json`、`resources/` | 打包配置与随应用分发的依赖声明 |
 | `scripts/` | 版本号、检查、脱敏密钥扫描和本地打包 |
-| `docs/`、`design/` | 设计语言、架构决策记录和原型 |
+| `docs/`、`design/` | 设计语言（`docs/design.md`）、设计令牌、原型和架构决策记录 |
 | `.github/workflows/` | `ci.yml`、`pr-title.yml` 和手动触发的打包 workflow |
 
 ## 开发
