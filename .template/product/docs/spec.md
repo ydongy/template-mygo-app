@@ -38,7 +38,7 @@ Configured products offer signed updates from a public HTTPS source, with a nati
 
 ## Technical baseline
 
-Go 1.27.1, MyGo v0.2.16, no cgo in production, no frontend toolchain.
+Go 1.27.1, MyGo v0.3.6, no cgo in production, no frontend toolchain.
 macOS 12+, Windows 10/11, Linux GTK 3; amd64 and arm64. Default window 480×320, minimum 360×280.
 Nine UI languages with English fallback; no performance claim until measured on a device.
 

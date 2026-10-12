@@ -7,7 +7,7 @@
 
 The template needs a native desktop UI with a single language and reproducible builds.
 Reference: [native UI guide](https://mygo.egoist.dev/docs/ui) and
-[the pinned MyGo source](https://github.com/egoist/mygo/tree/v0.2.16).
+[the MyGo source at the version pinned in `go.mod`](https://github.com/egoist/mygo/tree/v0.3.6).
 
 ## Decision
 

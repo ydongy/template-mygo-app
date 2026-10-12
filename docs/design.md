@@ -4,7 +4,7 @@ This is the design language of `Template`: the rules every screen follows, and t
 departs from them. It builds on the native UI toolkit of [MyGo](https://github.com/egoist/mygo) and summarizes the
 parts of its [UI guides](https://github.com/egoist/mygo/blob/main/docs/ui/README.md) that matter for design; the
 guides stay the authority on API details. The links below point to the upstream `main` branch; the toolkit version
-this template builds against is pinned in `go.mod` (v0.2.16), so check a page against that version before relying on
+this template builds against is pinned in `go.mod` (v0.3.6), so check a page against that version before relying on
 an API it describes.
 
 The counter in `internal/ui/example/` is a neutral fixture that demonstrates these rules. Replace it with your own
@@ -259,7 +259,9 @@ MyGo exposes native UI to VoiceOver, Narrator, NVDA and Orca; see
 - [ ] `ui.NewTester` tests click controls by their accessible names, so a missing name fails the test.
 
 A headless test does not prove operating-system accessibility. Check with a real screen reader on each target before
-release.
+release. The upstream [Testing](https://github.com/egoist/mygo/blob/main/docs/ui/testing.md) guide covers
+`ui.NewTester`, and the [Inspector](https://github.com/egoist/mygo/blob/main/docs/ui/inspector.md) (F12 in development
+builds) shows the element tree, roles and names of a running window, which helps when a name is missing.
 
 ## Motion
 
@@ -304,5 +306,5 @@ Motion explains what changed and where it went; it does not decorate. See
 This design language draws on the UI documentation of MyGo (MIT License, Copyright (c) egoist):
 <https://github.com/egoist/mygo/tree/main/docs/ui>, together with `docs/native.md`, `docs/menus.md` and
 `docs/windows.md`. The text here is a summary in our own words; the upstream pages are the source for APIs and
-behavior. The template pins MyGo v0.2.16; upstream `main` may describe newer APIs. See also
+behavior. The template pins MyGo v0.3.6; upstream `main` may describe newer APIs. See also
 [THIRD_PARTY.md](../THIRD_PARTY.md).
