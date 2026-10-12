@@ -1,42 +1,16 @@
-<!-- template: mygo-app/README.md v1 -->
-# Template
+# .template
 
-A native desktop application written in Go. The current baseline is a counter demonstration.
+Skeletons that `scripts/init.sh` installs over the tree, chosen by `--license`. Nothing here is part of the
+template itself; `init.py` deletes this directory.
 
-## Status
+| Directory | Installed by | Contents |
+|---|---|---|
+| `oss/` | `--license mit` (default) | Open-source `README.md`, `AGENTS.md`, `CHANGELOG.md` for the new product. `LICENSE` (MIT), `CONTRIBUTING.md`, `CLAUDE.md`, `.editorconfig`, `ci.yml`, `pr-title.yml` and Dependabot config are the files already at the template root; `CODEOWNERS` is generated from `--owner` or the git remote. |
+| `product/` | `--license proprietary` | Closed-source product skeleton: proprietary `LICENSE` (terms of service), `README.md`, `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `CHANGELOG.md`/`CHANGELOG.zh.md`, `SECURITY.md`, `THIRD_PARTY.md`, `docs/` (specification, legal, roadmap, website, process, release plan, ADRs, design language), `design/README.md`, the documents-check config, the repository-type marker, `scripts/check.sh` (with the optional documents check), `.github/` (shared-workflow callers for CI and the documents check, Copilot instructions). |
 
-Development baseline 0.1.0. macOS 12+, Windows 10/11, Linux with GTK 3; amd64 and arm64.
-See [the roadmap](docs/roadmap.md). No public release is available.
+How it is applied: the chosen directory is copied over the working tree first, then every file is rewritten
+(`Template` to the product name, `example.com` to the domain, and so on). In `proprietary` mode the open-source-only
+files (`CONTRIBUTING.md`, `pr-title.yml`, `CODEOWNERS`) are removed.
 
-## Product
-
-The baseline opens one native window, changes an in-memory count and follows the system language.
-Replace it with the product specification before shipping.
-
-## Install
-
-Official downloads will live at https://example.com. Development packages are local artifacts,
-not public signed releases. Verify signatures and checksums as the website instructs.
-
-## Development
-
-Install Go 1.27.1 and Python 3. Run `scripts/check.sh --cross`, `go tool mygo dev`
-and `go tool mygo build`. Run `python3 <dotgithub>/scripts/check-docs.py .` for documents.
-Use `python3 scripts/bump.py <version>` to advance the version and both changelogs.
-The handbook is https://github.com/ydongy/.github/tree/6b48552c969c28a954498123bb502a556f8eed79/handbook.
-
-## Documentation
-
-| Document | Contents |
-|---|---|
-| [docs/spec.md](docs/spec.md) | Behavior and acceptance |
-| [docs/design.md](docs/design.md) | Design language |
-| [docs/roadmap.md](docs/roadmap.md) | Release scope |
-| [docs/adr/](docs/adr/README.md) | Decisions |
-| [CHANGELOG.md](CHANGELOG.md) | Changes |
-| [AGENTS.md](AGENTS.md) | AI collaborator brief |
-
-## License
-
-Closed source. `LICENSE` contains the terms of service, to be published at
-https://example.com/terms. Dependency notices are in `THIRD_PARTY.md`.
+Placeholders: `Template`, `example.com`, `com.example.template`, `github.com/ydongy/template`. Do not write a real
+product name here.

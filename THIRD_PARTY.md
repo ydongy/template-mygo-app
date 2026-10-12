@@ -1,4 +1,3 @@
-<!-- template: mygo-app/THIRD_PARTY.md v1 -->
 # Third-party software
 
 | Name | Version | License | Shipped in the app | Notice | Credited in About |

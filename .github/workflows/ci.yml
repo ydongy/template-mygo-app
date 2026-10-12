@@ -1,10 +1,34 @@
 name: CI
+
 on:
   pull_request:
   push:
     branches: [main]
+
 permissions:
   contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
-  ci:
-    uses: ydongy/.github/.github/workflows/mygo-ci.yml@6b48552c969c28a954498123bb502a556f8eed79
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0 # the secret scan reads the whole history
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - name: Format, module, tests and cross-compilation
+        run: scripts/check.sh --cross
+      - name: Secret scan of the history
+        run: python3 scripts/scan_secrets.py
+      - name: Race detector
+        run: go test -race ./...

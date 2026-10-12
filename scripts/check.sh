@@ -14,9 +14,6 @@ diff -u "$work/go.sum" go.sum
 go vet ./...
 go test ./...
 python3 -m unittest discover -s scripts -p 'test_*.py'
-if [[ -n "${ORG_DOCS_ROOT:-}" ]]; then
-  python3 "$ORG_DOCS_ROOT/scripts/check-docs.py" .
-fi
 if [[ "${1:-}" == --cross ]]; then
   for target in darwin/arm64 darwin/amd64 windows/amd64 windows/arm64 linux/amd64 linux/arm64; do
     echo "Compiling $target"

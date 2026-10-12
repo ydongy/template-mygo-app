@@ -14,7 +14,7 @@ The handbook link and docs workflow pin one revision; upgrade them together in a
 
 `docs/spec.md` owns behavior, `docs/design.md` owns presentation, `mygo.json` owns packaging
 and version, and `docs/legal.md` owns the matching legal facts. Documents win over code.
-How we work: https://github.com/ydongy/.github/tree/6b48552c969c28a954498123bb502a556f8eed79/handbook;
+How we work: https://github.com/ydongy/.github/tree/f61354c75725bf3688632a9d3040e5664046f81a/handbook;
 AI rules: `handbook/core/agents.md`.
 
 ## Directory boundaries

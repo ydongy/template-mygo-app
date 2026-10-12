@@ -29,6 +29,12 @@ class BumpTest(unittest.TestCase):
             self.assertIn("## [Unreleased]\n\n## [1.0.0] - ", text)
             self.assertIn("- Example.", text)
 
+    def test_bump_without_chinese_changelog(self):
+        (self.root / "CHANGELOG.zh.md").unlink()
+        r = subprocess.run(["python3", "scripts/bump.py", "1.0.0"], cwd=self.root, capture_output=True, text=True)
+        self.assertEqual(r.returncode, 0, r.stderr)
+        self.assertIn("## [Unreleased]\n\n## [1.0.0] - ", (self.root / "CHANGELOG.md").read_text())
+
     def test_bump_without_system_timezone_database(self):
         r = subprocess.run(["python3", "-S", "scripts/bump.py", "1.0.0"], cwd=self.root,
                            env={**os.environ, "PYTHONTZPATH": ""}, capture_output=True, text=True)

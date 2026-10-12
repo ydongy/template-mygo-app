@@ -1,4 +1,3 @@
-<!-- template: adr-index.md v2 -->
 # Architecture Decision Records
 
 ## Index
@@ -7,6 +6,17 @@
 |---|---|---|
 | [0001](0001-pure-go-native-ui.md) | Pure Go native UI | accepted |
 
-## Record template
+## Record format
 
-See `handbook/templates/common/adr.md`.
+Name a record `NNNN-short-title.md` and write:
+
+```markdown
+# NNNN Title
+
+- Status: proposed | accepted | superseded by NNNN
+- Date: YYYY-MM-DD
+
+## Context
+## Decision
+## Cost
+```

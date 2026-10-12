@@ -1,10 +1,9 @@
-<!-- template: app/design.md v1 -->
 # Template design language
 
 ## Principles
 
 Native controls and theme defaults. Draw from UI-thread state; no work that blocks a frame.
-The counter is a neutral fixture; product design goes through the handbook gates.
+The counter is a neutral fixture; replace it with your own design.
 
 ## Core symbol
 

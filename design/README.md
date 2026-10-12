@@ -1,4 +1,3 @@
-<!-- template: design-README.md v2 -->
 # Design mockups
 
 ## Viewing
@@ -8,16 +7,15 @@ Use ?state=zero,positive,negative and ?scheme=light,dark to inspect states.
 
 ## Screens
 
-| Screen | Spec | Design file | Code dir | Status | Signed off | Accepted |
-|---|---|---|---|---|---|---|
-| Example | `docs/spec.md#counting` | `screens/example.html` | `internal/ui/example/` | planned | | |
+| Screen | Design file | Code dir | Status |
+|---|---|---|---|
+| Example | `screens/example.html` | `internal/ui/example/` | fixture |
 
 ## Decision log
 
 2026-10-07: maintainer chose pure Go native UI. The neutral example has no screen sign-off
-or device acceptance; initialized products replace it and follow the design gates.
+or device acceptance; replace it with your own screens.
 
 ## Maintenance
 
-Change spec, design text and native view together. The fixture does not advance the ledger.
-Real products obtain explicit review and commit only real device captures.
+Change the design text and the native view together. Commit only real device captures.

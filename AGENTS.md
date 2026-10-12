@@ -1,52 +1,45 @@
-<!-- template: AGENTS.md v1 -->
 # AGENTS.md
 
 ## What it is
 
-The ydongy template for MyGo native apps. The neutral product is Template;
-`scripts/init.sh` creates a named product. The template itself is never released.
+A GitHub template repository for pure Go desktop apps with MyGo native UI (macOS 12+, Windows 10/11, Linux with
+GTK 3; amd64 and arm64). The neutral product is `Template`; `scripts/init.sh` turns it into a named project.
+The template is MIT licensed and never released.
 
-## Sources of truth
+## Layout
 
-Read `handbook/core/` first, then only the guides, stacks and type preset that apply to this project.
-Its documented platforms, languages, architecture and distribution remain project decisions.
-The handbook link and docs workflow pin one revision; upgrade them together in a migration PR.
-
-`docs/spec.md` owns behavior, `docs/design.md` owns presentation, `mygo.json` owns packaging
-and version, and `docs/legal.md` owns the matching legal facts. Documents win over code.
-How we work: https://github.com/ydongy/.github/tree/6b48552c969c28a954498123bb502a556f8eed79/handbook;
-AI rules: `handbook/core/agents.md`.
-
-## Directory boundaries
-
-`main.go`: lifecycle and window. `internal/ui/example/`: screen state and native view.
-`resources/`: shipped notices and product assets. `scripts/`: checks, version and packaging.
-`docs/`, `design/`: spec, decisions and ledger. No external work runs during drawing.
-See `handbook/types/mygo-app/layout.md`.
+```
+main.go                    lifecycle and window
+internal/ui/example/       screen state and native view (with copy.json catalog and tests)
+mygo.json, go.mod          packaging, version, pinned MyGo library and CLI
+resources/                 shipped dependency notices and product assets
+scripts/                   checks, version bump, packaging, secret scan, init
+docs/, design/             design language, ADRs, mockups
+.template/oss/             files init installs for --license mit
+.template/product/         files init installs for --license proprietary
+```
 
 ## Commands
 
 ```sh
-scripts/check.sh --cross
+scripts/check.sh --cross     # format, module tidy, vet, tests, script tests, cross-compilation
 go test -race ./...
 go tool mygo dev
 go tool mygo build
 python3 scripts/bump.py <version>
 scripts/release.sh --check
-python3 <dotgithub>/scripts/check-docs.py .
 ```
 
-## Project rules
+## Conventions
 
-Only Go native views; use the native updater plugin. Every UI language is in the embedded catalog.
-A real screen follows `handbook/guides/ui-workflow.md`; headless tests do not constitute device acceptance.
-Pin CLI and library together in go.mod. Update notices when dependencies change.
-Signing, notarization and update hosting are not configured in the baseline.
-Keep Template, example.com and com.example.template as the only product placeholders.
-After changing initialization, run its tests on disposable copies. `.repo-type` stays template here;
-product README and AGENTS come from `.template/`.
+- Only Go native views; use the native updater plugin. Every UI language is in the embedded catalog.
+- Pin the CLI and the library together in `go.mod`. Update `THIRD_PARTY.md` and the notices when dependencies change.
+- Signing, notarization and update hosting are not configured in the baseline.
+- Keep `Template`, `example.com` and `com.example.template` as the only product placeholders; `init.py` rewrites
+  exactly these. After changing initialization, run `python3 scripts/test_init.py` (it works on disposable copies).
+- Commit messages and PR titles use Conventional Commits: `feat|fix|docs|refactor|perf|test|build|ci|chore|revert(scope)!: subject`.
 
 ## Red lines
 
-Credentials never appear in PRs, issues, logs, reports or chat. Signing, release and anything sent to an
-external service need the maintainer's confirmation. No blind staging. See `handbook/core/agents.md`.
+Credentials never appear in PRs, issues, logs or chat. Signing, release and anything sent to an external service
+need the maintainer's confirmation. No blind staging.

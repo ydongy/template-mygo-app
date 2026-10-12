@@ -1,9 +1,7 @@
-<!-- template: adr.md v1 -->
 # 0001 Pure Go native UI
 
 - Status: accepted
 - Date: 2026-10-07
-- Related: `docs/spec.md#technical-baseline`
 
 ## Context
 

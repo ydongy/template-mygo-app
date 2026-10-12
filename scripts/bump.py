@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Advance the single app version and date the unreleased notes in both languages."""
+"""Advance the single app version and date the unreleased notes in each changelog (CHANGELOG.zh.md only when it exists)."""
 import argparse
 from datetime import datetime, timedelta, timezone
 import json
@@ -19,6 +19,8 @@ if tuple(map(int, args.version.split("."))) <= tuple(map(int, config["version"].
 changes = {}
 date = datetime.now(timezone(timedelta(hours=8))).date().isoformat()
 for name in ("CHANGELOG.md", "CHANGELOG.zh.md"):
+    if name != "CHANGELOG.md" and not (root / name).exists():
+        continue  # the Chinese changelog is optional
     text = (root / name).read_text()
     if text.count("\n## [Unreleased]\n") != 1:
         parser.error(f"{name} must have one Unreleased section")

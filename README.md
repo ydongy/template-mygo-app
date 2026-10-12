@@ -1,10 +1,43 @@
-<!-- template: template/README.md v1 -->
 # template-mygo-app
 
-A starting point for pure Go desktop apps with MyGo native UI on macOS, Windows and Linux.
-The neutral product is Template until `scripts/init.sh` names it. No WebView, HTML, Node or Bun.
+[![CI](https://github.com/ydongy/template-mygo-app/actions/workflows/ci.yml/badge.svg)](https://github.com/ydongy/template-mygo-app/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-## What is here
+A GitHub template for pure Go desktop apps with MyGo native UI on macOS, Windows and Linux. The neutral product is
+called `Template` until `scripts/init.sh` names it. No WebView, HTML, Node or Bun.
+
+## Quick start
+
+1. On GitHub choose **Use this template** and create your repository.
+2. Clone it and run `scripts/init.sh <Name> <domain> [--license mit|proprietary] [--owner <github-user>] [--repo <name>]`:
+
+   ```bash
+   scripts/init.sh Acme acme.com                       # open-source project (MIT), the default
+   scripts/init.sh Acme acme.com --license proprietary # closed-source product skeleton
+   ```
+
+3. Run `scripts/check.sh --cross`.
+4. Run `go tool mygo dev`; package locally with `go tool mygo build`.
+5. Replace the counter example, then review the changed file list before committing.
+
+Initialization sets the Go module path and the reverse-DNS identifier, installs the skeleton for the chosen
+license and removes itself. It never creates credentials or publishes.
+
+## init options
+
+| Option | Meaning |
+|---|---|
+| `<Name>` | Product name in PascalCase |
+| `<domain>` | Product domain, lowercase; the identifier becomes `<domain-reversed>.app` |
+| `--license mit` (default) | Open-source project: MIT `LICENSE`, `README.md`, `CONTRIBUTING.md`, `AGENTS.md`, `CLAUDE.md`, `CHANGELOG.md`, self-contained `ci.yml`, `pr-title.yml`, Dependabot and `CODEOWNERS` |
+| `--license proprietary` | Closed-source product skeleton: proprietary terms as `LICENSE`, specification, legal, roadmap, website, process and release-plan documents, the repository-type marker and documents-check config, and workflows that call ydongy's shared CI and documents-check workflows |
+| `--owner <user>` | GitHub user or organisation for `CODEOWNERS` and the module path; inferred from `git remote origin` when omitted, otherwise `CODEOWNERS` gets a `* @<owner>` placeholder to fill in |
+| `--repo <name>` | Repository name (default: the lowercase product name) |
+
+The skeleton files for each option live in `.template/oss/` and `.template/product/`; see
+[.template/README.md](.template/README.md).
+
+## Project layout
 
 | Path | Purpose |
 |---|---|
@@ -12,32 +45,25 @@ The neutral product is Template until `scripts/init.sh` names it. No WebView, HT
 | `go.mod`, `go.sum`, `.go-version` | Pinned Go, MyGo and CLI; no frontend toolchain |
 | `mygo.json`, `resources/` | Packaging configuration and shipped dependency notices |
 | `scripts/` | Initialization, version bump, checks, redacted secret scan and local packaging |
-| `.template/` | Product README and AGENTS installed by initialization |
-| `docs/`, `design/` | Product spec, design ledger, legal facts and ADRs |
-| `.github/workflows/` | Shared CI/docs callers and manual packaging artifacts |
+| `docs/`, `design/` | Design language, architecture decision records and mockups |
+| `.template/` | Optional skeletons that `init` installs |
+| `.github/workflows/` | `ci.yml`, `pr-title.yml` and a manual packaging workflow |
 
-## Using it
+## Development
 
-1. Create a repository from this template (private or public), then clone it.
-2. Run `scripts/init.sh <Name> <domain> [--repo <repository-name>]`.
-3. Run `scripts/check.sh --cross`. Set `ORG_DOCS_ROOT` to a checkout of `ydongy/.github`
-   when running document checks locally.
-4. Replace the neutral example spec/design with the product, and review the explicit changed file list before committing.
-5. Run `go tool mygo dev`. Package locally with `go tool mygo build`.
-6. Configure the product icon, legal facts, signing and updates before a public release.
+```bash
+scripts/check.sh --cross          # gofmt, go mod tidy, vet, tests, script tests, cross-compilation
+go test -race ./...
+python3 scripts/test_init.py      # init on disposable copies, both licenses
+```
 
-Initialization sets the module path and reverse-DNS identifier, switches the type to `mygo-app`,
-installs product docs and removes itself and template planning notes. It never creates credentials
-or publishes. The shared workflows and handbook are pinned to the same ydongy/.github commit, so document checks
-recognize the new type before the handbook branch is merged. Update both pins together.
+`Template`, `example.com` and `com.example.template` are the placeholders `init` replaces; do not write a real
+product name anywhere.
 
-## Changing it
+## Contributing
 
-Run `scripts/check.sh --cross` and `python3 <dotgithub>/scripts/check-docs.py .`, then
-exercise `scripts/init.sh` on a disposable copy. Initialization tests compile and check that copy.
-Products created earlier do not receive changes automatically; migrate useful changes explicitly.
-The template is never released. Keep placeholder names neutral.
+See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
-This template is released under the [MIT License](LICENSE), copyright (c) 2026 ydongy. `scripts/init.sh` replaces `LICENSE` with a terms-of-service placeholder (from `.template/LICENSE`) for the new product; replace it with the license you choose. Dependency notices are in `THIRD_PARTY.md`.
+[MIT](LICENSE). Dependency notices are in [THIRD_PARTY.md](THIRD_PARTY.md).
