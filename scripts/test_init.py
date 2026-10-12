@@ -1,6 +1,7 @@
 """Initialize disposable copies, never this working tree."""
 import hashlib
 import json
+import re
 from pathlib import Path
 import shutil
 import subprocess
@@ -44,6 +45,28 @@ class InitTest(unittest.TestCase):
                 self.assertNotIn("example.com", text, str(p))
                 self.assertNotIn("Template", text, str(p))
 
+    def assert_readmes(self, owner, proprietary):
+        en = (self.root / "README.md").read_text()
+        zh = (self.root / "README.zh-CN.md").read_text()
+        for text in (en, zh):
+            self.assertIn("# Probe\n", text.split("</div>")[0])
+            self.assertNotIn("template-mygo-app", text)
+        self.assertIn("[简体中文](README.zh-CN.md)", en)
+        self.assertIn("[English](README.md)", zh)
+        self.assertIn("## Features", en)
+        self.assertIn("## 功能特性", zh)
+        self.assertIsNone(re.search("[\u4e00-\u9fff]", en.replace("简体中文", "")))
+        for text in (en, zh):
+            if proprietary:
+                self.assertIn("license-proprietary", text)
+                self.assertNotIn("actions/workflows/ci.yml/badge", text)
+            else:
+                self.assertIn(f"github.com/{owner}/", text)
+                self.assertIn("actions/workflows/ci.yml/badge", text)
+            for target in re.findall(r"\]\(([^)#]+)(?:#[^)]*)?\)", text):
+                if not target.startswith("http"):
+                    self.assertTrue((self.root / target).exists(), target)
+
     def assert_helper_files_gone(self):
         for name in (".template", "scripts/init.sh", "scripts/init.py", "scripts/test_init.py", "docs/superpowers"):
             self.assertFalse((self.root / name).exists(), name)
@@ -66,8 +89,8 @@ class InitTest(unittest.TestCase):
         self.assertTrue((self.root / "LICENSE").read_text().startswith("MIT License"))
         self.assertEqual((self.root / ".github/CODEOWNERS").read_text(), "* @acme-inc\n")
         self.assertEqual((self.root / "CLAUDE.md").read_text().strip(), "@AGENTS.md")
-        self.assertTrue((self.root / "README.md").read_text().startswith("# Probe\n"))
-        for name in ("CONTRIBUTING.md", "CHANGELOG.md", "AGENTS.md", ".editorconfig", ".github/dependabot.yml",
+        self.assert_readmes("acme-inc", proprietary=False)
+        for name in ("README.md", "README.zh-CN.md", "CONTRIBUTING.md", "CHANGELOG.md", "AGENTS.md", ".editorconfig", ".github/dependabot.yml",
                      ".github/workflows/ci.yml", ".github/workflows/pr-title.yml", "docs/design.md",
                      "docs/adr/README.md", "THIRD_PARTY.md"):
             self.assertTrue((self.root / name).is_file(), name)
@@ -109,13 +132,13 @@ class InitTest(unittest.TestCase):
         self.assertEqual(config["identifier"], "test.probe.app")
         self.assertIn("github.com/ydongy/probe-desktop", (self.root / "go.mod").read_text())
         self.assertIn("https://probe.test", (self.root / "docs/website.md").read_text())
-        self.assertTrue((self.root / "README.md").read_text().startswith("# Probe\n"))
+        self.assert_readmes("ydongy", proprietary=True)
         license_text = (self.root / "LICENSE").read_text()
         self.assertTrue(license_text.startswith("Terms of Service\n"))
         self.assertIn("Copyright (c) 2026 ydongy. All rights reserved.", license_text)
         self.assertEqual((self.root / ".github/CODEOWNERS").read_text(), "* @ydongy\n")
         self.assertEqual((self.root / "CLAUDE.md").read_text().strip(), "@AGENTS.md")
-        for name in ("docs/spec.md", "docs/design.md", "docs/legal.md", "docs/roadmap.md", "docs/website.md",
+        for name in ("README.md", "README.zh-CN.md", "docs/spec.md", "docs/design.md", "docs/legal.md", "docs/roadmap.md", "docs/website.md",
                      "docs/releasing.md", "docs/security/README.md", "docs/adr/README.md", "design/README.md",
                      "CONTRIBUTING.md", "CHANGELOG.md", "CHANGELOG.zh.md", "THIRD_PARTY.md", "AGENTS.md",
                      ".editorconfig", ".github/dependabot.yml", ".github/workflows/ci.yml",
