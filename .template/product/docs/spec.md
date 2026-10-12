@@ -1,4 +1,3 @@
-<!-- template: spec.md v2 -->
 # Template specification
 
 ## Decisions
@@ -45,7 +44,7 @@ Nine UI languages with English fallback; no performance claim until measured on 
 
 ## Acceptance checklist
 
-- [ ] Initialize a disposable copy and run its tests and document checks.
+- [ ] Initialize a disposable copy and run its tests.
 - [ ] Six target builds succeed and macOS packaging is inspected.
 - [ ] Before product release: device interaction, screen reader, signing and update tests pass.
-- [ ] Before product release: replace the example and complete the design gates.
+- [ ] Before product release: replace the example and have the maintainer confirm the design.

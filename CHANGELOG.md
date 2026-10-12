@@ -8,7 +8,8 @@ All notable changes to this template are documented here. The format is based on
 ### Changed
 - The template is organised as an open-source repository: MIT license, self-contained CI, contributor guide.
 - `scripts/init.sh` takes `--license mit|proprietary` (default `mit`). `mit` produces an open-source project;
-  `proprietary` produces the closed-source product skeleton (specification, legal, roadmap, website and process
-  documents, proprietary terms, shared-workflow callers).
+  `proprietary` produces everything `mit` does plus the closed-source layer (proprietary terms, specification,
+  legal, website, releasing, roadmap and security-review documents, Chinese changelog).
 - The closed-source skeleton moved to `.template/product/`, the open-source one to `.template/oss/`.
 - `scripts/check.sh` no longer runs a documents check; `scripts/bump.py` treats `CHANGELOG.zh.md` as optional.
+- The skeletons no longer depend on shared workflows or an external documents check.

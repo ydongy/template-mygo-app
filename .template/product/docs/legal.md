@@ -1,4 +1,3 @@
-<!-- template: legal.md v1 -->
 # Legal pages: one source per fact
 
 ## Where each thing lives

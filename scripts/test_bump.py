@@ -18,7 +18,7 @@ class BumpTest(unittest.TestCase):
         shutil.copy(ROOT / "scripts/bump.py", self.root / "scripts/bump.py")
         (self.root / "mygo.json").write_text('{"name":"Probe","version":"0.1.0"}\n')
         for name in ("CHANGELOG.md", "CHANGELOG.zh.md"):
-            (self.root / name).write_text("<!-- template: CHANGELOG.md v1 -->\n# Changes\n\n## [Unreleased]\n\n### Added\n\n- Example.\n")
+            (self.root / name).write_text("# Changes\n\n## [Unreleased]\n\n### Added\n\n- Example.\n")
 
     def test_bump_preserves_notes(self):
         r = subprocess.run(["python3", "scripts/bump.py", "1.0.0"], cwd=self.root, capture_output=True, text=True)

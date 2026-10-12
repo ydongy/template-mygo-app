@@ -1,23 +1,11 @@
-<!-- template: design-README.md v2 -->
 # Design mockups
 
-## Viewing
+`screens/example.html` is a self-contained HTML page with no external resources. Open it in a browser; it
+illustrates the template fixture, not real device captures. `?state=zero|positive|negative` shows one state and
+`?scheme=light|dark` forces the color scheme.
 
-Open screens/example.html in a browser. It illustrates the template fixture, not real device captures.
-Use ?state=zero,positive,negative and ?scheme=light,dark to inspect states.
+## Working rules
 
-## Screens
-
-| Screen | Spec | Design file | Code dir | Status | Signed off | Accepted |
-|---|---|---|---|---|---|---|
-| Example | `docs/spec.md#counting` | `screens/example.html` | `internal/ui/example/` | planned | | |
-
-## Decision log
-
-2026-10-07: maintainer chose pure Go native UI. The neutral example has no screen sign-off
-or device acceptance; initialized products replace it and follow the design gates.
-
-## Maintenance
-
-Change spec, design text and native view together. The fixture does not advance the ledger.
-Real products obtain explicit review and commit only real device captures.
+A UI change starts from the mockup: edit or add `screens/<screen>.html`, get the visual direction confirmed by the
+maintainer, then write the native view in `internal/ui/<screen>/`. Change the design text (`docs/design.md`) and the
+native view together. Commit only real device captures as screenshots.
