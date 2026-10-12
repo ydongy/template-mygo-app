@@ -1,4 +1,3 @@
-<!-- template: website.md v1 -->
 # Website
 
 ## Pages

@@ -1,4 +1,3 @@
-<!-- template: mygo-app/README.md v1 -->
 # Template
 
 A native desktop application written in Go. The current baseline is a counter demonstration.
@@ -21,9 +20,8 @@ not public signed releases. Verify signatures and checksums as the website instr
 ## Development
 
 Install Go 1.27.1 and Python 3. Run `scripts/check.sh --cross`, `go tool mygo dev`
-and `go tool mygo build`. Run `python3 <dotgithub>/scripts/check-docs.py .` for documents.
-Use `python3 scripts/bump.py <version>` to advance the version and both changelogs.
-The handbook is https://github.com/ydongy/.github/tree/f61354c75725bf3688632a9d3040e5664046f81a/handbook.
+and `go tool mygo build`. Use `python3 scripts/bump.py <version>` to advance the version and both changelogs.
+Contribution rules are in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Documentation
 
@@ -32,6 +30,11 @@ The handbook is https://github.com/ydongy/.github/tree/f61354c75725bf3688632a9d3
 | [docs/spec.md](docs/spec.md) | Behavior and acceptance |
 | [docs/design.md](docs/design.md) | Design language |
 | [docs/roadmap.md](docs/roadmap.md) | Release scope |
+| [docs/legal.md](docs/legal.md) | Legal facts and the code they must match |
+| [docs/website.md](docs/website.md) | What the app needs from the website |
+| [docs/releasing.md](docs/releasing.md) | How a release is made |
+| [docs/security/](docs/security/README.md) | One security review per version |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | Commits, branches, changelog |
 | [docs/adr/](docs/adr/README.md) | Decisions |
 | [CHANGELOG.md](CHANGELOG.md) | Changes |
 | [AGENTS.md](AGENTS.md) | AI collaborator brief |

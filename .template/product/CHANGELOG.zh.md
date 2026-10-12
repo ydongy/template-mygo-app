@@ -1,4 +1,3 @@
-<!-- template: CHANGELOG.zh.md v1 -->
 # Changelog
 
 ## [Unreleased]

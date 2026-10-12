@@ -24,8 +24,15 @@ class InitTest(unittest.TestCase):
         return {str(p.relative_to(self.root)): hashlib.sha256(p.read_bytes()).hexdigest()
                 for p in self.root.rglob("*") if p.is_file()}
 
-    # Words that must not survive in an open-source project (spelled in parts so this file passes its own check).
-    BANNED = ("hand" "book", "docs-" "check", "ORG_DOCS" "_ROOT", "ydongy/." "github", "mile" "stone")
+    # Words that must not survive in any generated project (spelled in parts so this file passes its own check).
+    BANNED = ("hand" "book", "docs-" "check", "ORG_DOCS" "_ROOT", "ydongy/." "github", "template" ": ")
+
+    def assert_no_banned_words(self):
+        for p in self.text_files():
+            if p.suffix in (".md", ".yml", ".json", ".sh", ".py", ".go", ".toml", ".mod", "") and p.name != "test_bump.py":
+                text = p.read_text()
+                for word in self.BANNED:
+                    self.assertNotIn(word, text, str(p))
 
     def text_files(self):
         return [p for p in self.root.rglob("*") if p.is_file() and ".git" not in p.relative_to(self.root).parts]
@@ -66,15 +73,12 @@ class InitTest(unittest.TestCase):
             self.assertTrue((self.root / name).is_file(), name)
         for name in (".repo-type", ".docs-" "check.json", "GEMINI.md", "SECURITY.md", "CHANGELOG.zh.md",
                      ".github/copilot-instructions.md", ".github/workflows/docs.yml", "docs/spec.md",
-                     "docs/legal.md", "docs/roadmap.md", "docs/website.md", "docs/process.md", "docs/mile" "stones"):
+                     "docs/legal.md", "docs/roadmap.md", "docs/website.md", "docs/releasing.md", "docs/security",
+                     "docs/pro" "cess.md", "docs/mile" "stones"):
             self.assertFalse((self.root / name).exists(), name)
         self.assert_helper_files_gone()
         self.assert_neutral_names_gone()
-        for p in self.text_files():
-            if p.suffix in (".md", ".yml", ".json", ".sh", ".py", ".go") and p.name != "test_bump.py":
-                text = p.read_text()
-                for word in self.BANNED:
-                    self.assertNotIn(word, text, str(p))
+        self.assert_no_banned_words()
         self.go_test()
         # the generated project passes its own script tests without a Chinese changelog
         result = subprocess.run(["python3", "-m", "unittest", "discover", "-s", "scripts", "-p", "test_*.py"],
@@ -95,35 +99,43 @@ class InitTest(unittest.TestCase):
         self.assertIn("github.com/octo/probe", (self.root / "go.mod").read_text())
 
     def test_proprietary_initialization(self):
+        subprocess.run(["git", "init", "-q"], cwd=self.root, check=True)
+        subprocess.run(["git", "remote", "add", "origin", "https://github.com/ydongy/probe-desktop.git"],
+                       cwd=self.root, check=True)
         result = self.run_init("Probe", "probe.test", "--repo", "probe-desktop", "--license", "proprietary")
         self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertNotIn("warning", result.stdout)
         config = json.loads((self.root / "mygo.json").read_text())
         self.assertEqual(config["identifier"], "test.probe.app")
-        self.assertEqual((self.root / ".repo-type").read_text().strip(), "mygo-app")
-        self.assertEqual(json.loads((self.root / ".docs-" "check.json").read_text()), {"ignore": [], "pending": []})
         self.assertIn("github.com/ydongy/probe-desktop", (self.root / "go.mod").read_text())
         self.assertIn("https://probe.test", (self.root / "docs/website.md").read_text())
-        self.assertIn("<!-- template: mygo-app/README.md v1 -->", (self.root / "README.md").read_text())
-        self.assertTrue((self.root / "LICENSE").read_text().startswith("Terms of Service"))
-        for name in ("docs/spec.md", "docs/legal.md", "docs/roadmap.md", "docs/process.md", "docs/mile" "stones/v1.0.md",
-                     "GEMINI.md", "SECURITY.md", "CHANGELOG.zh.md", ".github/copilot-instructions.md",
-                     ".github/workflows/docs.yml", ".github/workflows/ci.yml", ".github/workflows/package.yml"):
+        self.assertTrue((self.root / "README.md").read_text().startswith("# Probe\n"))
+        license_text = (self.root / "LICENSE").read_text()
+        self.assertTrue(license_text.startswith("Terms of Service\n"))
+        self.assertIn("Copyright (c) 2026 ydongy. All rights reserved.", license_text)
+        self.assertEqual((self.root / ".github/CODEOWNERS").read_text(), "* @ydongy\n")
+        self.assertEqual((self.root / "CLAUDE.md").read_text().strip(), "@AGENTS.md")
+        for name in ("docs/spec.md", "docs/design.md", "docs/legal.md", "docs/roadmap.md", "docs/website.md",
+                     "docs/releasing.md", "docs/security/README.md", "docs/adr/README.md", "design/README.md",
+                     "CONTRIBUTING.md", "CHANGELOG.md", "CHANGELOG.zh.md", "THIRD_PARTY.md", "AGENTS.md",
+                     ".editorconfig", ".github/dependabot.yml", ".github/workflows/ci.yml",
+                     ".github/workflows/pr-title.yml", ".github/workflows/package.yml"):
             self.assertTrue((self.root / name).is_file(), name)
-        for name in ("CONTRIBUTING.md", ".github/CODEOWNERS", ".github/workflows/pr-title.yml"):
+        for name in (".repo-type", ".docs-" "check.json", "GEMINI.md", "SECURITY.md",
+                     ".github/copilot-instructions.md", ".github/workflows/docs.yml", "docs/pro" "cess.md",
+                     "docs/mile" "stones"):
             self.assertFalse((self.root / name).exists(), name)
-        self.assertIn("uses: ydongy/", (self.root / ".github/workflows/ci.yml").read_text())
-        self.assertIn("ORG_DOCS" "_ROOT", (self.root / "scripts/check.sh").read_text())
+        ci = (self.root / ".github/workflows/ci.yml").read_text()
+        self.assertNotIn("uses: ydongy/", ci)
+        self.assertIn("scripts/check.sh", ci)
+        self.assertNotIn("ORG_DOCS" "_ROOT", (self.root / "scripts/check.sh").read_text())
         self.assert_helper_files_gone()
         self.assert_neutral_names_gone()
+        self.assert_no_banned_words()
         self.go_test()
-        checker = ROOT.parent / ".github/scripts/check-docs.py"
-        if checker.exists():
-            subprocess.run(["git", "init", "-q"], cwd=self.root, check=True)
-            # The checker scans tracked files; track the explicit copied file inventory.
-            paths = [str(p.relative_to(self.root)) for p in self.text_files()]
-            subprocess.run(["git", "add", "--", *paths], cwd=self.root, check=True)
-            result = subprocess.run(["python3", str(checker), str(self.root)], text=True, capture_output=True)
-            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        result = subprocess.run(["python3", "-m", "unittest", "discover", "-s", "scripts", "-p", "test_*.py"],
+                                cwd=self.root, text=True, capture_output=True)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
     def test_invalid_input_leaves_copy_unchanged(self):
         before = self.snapshot()

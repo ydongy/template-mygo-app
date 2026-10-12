@@ -30,7 +30,7 @@ license and removes itself. It never creates credentials or publishes.
 | `<Name>` | Product name in PascalCase |
 | `<domain>` | Product domain, lowercase; the identifier becomes `<domain-reversed>.app` |
 | `--license mit` (default) | Open-source project: MIT `LICENSE`, `README.md`, `CONTRIBUTING.md`, `AGENTS.md`, `CLAUDE.md`, `CHANGELOG.md`, self-contained `ci.yml`, `pr-title.yml`, Dependabot and `CODEOWNERS` |
-| `--license proprietary` | Closed-source product skeleton: proprietary terms as `LICENSE`, specification, legal, roadmap, website, process and release-plan documents, the repository-type marker and documents-check config, and workflows that call ydongy's shared CI and documents-check workflows |
+| `--license proprietary` | Everything `mit` installs (proprietary terms as `LICENSE`, `CONTRIBUTING.md`, `CODEOWNERS`, `pr-title.yml`, Dependabot, `AGENTS.md`, `CLAUDE.md`, the same `ci.yml`), plus the closed-source layer: specification, legal, website, releasing, roadmap and security-review documents, `CHANGELOG.zh.md` and a simplified `design/README.md` |
 | `--owner <user>` | GitHub user or organisation for `CODEOWNERS` and the module path; inferred from `git remote origin` when omitted, otherwise `CODEOWNERS` gets a `* @<owner>` placeholder to fill in |
 | `--repo <name>` | Repository name (default: the lowercase product name) |
 
