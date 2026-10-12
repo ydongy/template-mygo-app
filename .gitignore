@@ -1,0 +1,11 @@
+/build/
+/.mygo/
+/.design-review/
+*.exe
+*.test
+__pycache__/
+*.pyc
+.DS_Store
+mygo-update.key
+*.p12
+*.pfx

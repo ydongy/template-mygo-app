@@ -1,0 +1,10 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  ci:
+    uses: ydongy/.github/.github/workflows/mygo-ci.yml@6b48552c969c28a954498123bb502a556f8eed79

@@ -1,0 +1,51 @@
+Terms of Service (template: mygo-app/LICENSE v1)
+
+Copyright (c) 2026 ydongy. All rights reserved.
+
+Last updated October 2026
+
+1. License
+   You may install and use official releases of Template on devices you own or control.
+   This is a non-exclusive, non-transferable license; the software is licensed, not sold.
+
+2. Free plan and Pro
+   The baseline has no paid plan. A product defines paid features and prices before offering them.
+
+3. License key
+   The baseline issues no license key. Paid activation terms must match the released implementation.
+
+4. Activation and verification
+   The baseline does not contact a licensing service.
+
+5. Your data and credentials
+   The baseline count is held in memory and is not sent to a service. It requests no credentials.
+   A configured updater stores its preferences and contacts the configured update source.
+
+6. Restrictions
+   You may not redistribute the software or bypass its licensing controls, except as applicable law permits.
+
+7. Updates
+   The baseline has no configured update source. When enabled, signed updates are offered by a native
+   window. The user chooses installation and may opt into automatic downloads. Describe the actual
+   product update source and data handling before shipping.
+
+8. Third-party components
+   The notices in THIRD_PARTY.md and resources/ThirdPartyLicenses/ apply to their components.
+
+9. Purchases and refunds
+   No purchases exist in the baseline. Paid terms and refund rights must be stated before purchase.
+
+10. Intellectual property
+   Template and its original code belong to their owner; third-party components retain their licenses.
+
+11. Termination
+   The license ends if you breach these terms, subject to rights under applicable law.
+
+12. Disclaimer
+   The software is provided as is, to the extent permitted by applicable law.
+
+13. Limitation of liability
+   Liability limitations are subject to mandatory consumer rights and applicable law.
+
+14. Changes
+   Material changes to these terms are announced with the release they apply to.
