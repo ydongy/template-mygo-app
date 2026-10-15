@@ -7,7 +7,6 @@
 [![CI](https://github.com/ydongy/template/actions/workflows/ci.yml/badge.svg)](https://github.com/ydongy/template/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Go](https://img.shields.io/badge/go-1.27.1-00ADD8.svg)](.go-version)
-[![Website](https://img.shields.io/badge/website-example.com-informational.svg)](https://example.com)
 
 [English](README.md) · **简体中文**
 
@@ -29,7 +28,7 @@ Template 是使用 Go 和 [MyGo](https://github.com/egoist/mygo) 原生 UI 编�
 
 ## 快速开始
 
-正式下载将发布在 https://example.com。首个版本发布前请自行构建：
+从源码构建并运行：
 
 ```bash
 go tool mygo dev     # 运行应用

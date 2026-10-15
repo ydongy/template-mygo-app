@@ -44,7 +44,7 @@ rules = [("com.example.template", ".".join(reversed(labels)) + ".app"),
          ("github.com/ydongy/template", f"github.com/{owner}/{repo}"),
          ("example.com", args.domain), ("Template", args.name)]
 # Prepare text before modifying the checkout. Skip Git metadata and generated outputs.
-skip_parts = {".git", "build", ".mygo", "__pycache__", "superpowers"}
+skip_parts = {".git", "build", ".mygo", "__pycache__"}
 content = {}
 for p in root.rglob("*"):
     rel = p.relative_to(root)
@@ -75,8 +75,6 @@ for p, text in changes.items():
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(text, encoding="utf-8")
 shutil.rmtree(root / ".template")
-if (root / "docs/superpowers").exists():
-    shutil.rmtree(root / "docs/superpowers")
 for rel in ("scripts/test_init.py", "scripts/init.sh", "scripts/init.py"):
     (root / rel).unlink()
 print(f"Initialized {args.name} ({args.domain}, repository {owner}/{repo}, license {args.license}).")
