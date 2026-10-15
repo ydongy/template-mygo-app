@@ -29,7 +29,7 @@ current baseline is a counter demonstration; replace it with your app.
 
 ## Quick start
 
-Official downloads will live at https://example.com. Until the first release, build it yourself:
+Build and run it from source:
 
 ```bash
 go tool mygo dev     # run the app

@@ -65,10 +65,10 @@ class InitTest(unittest.TestCase):
             else:
                 self.assertIn(f"github.com/{owner}/", text)
                 self.assertIn("actions/workflows/ci.yml/badge", text)
-                badges = text.split("</div>")[0]
-                self.assertIn("badge/go-", badges)
-                self.assertNotIn("badge/website", badges)
-                self.assertNotIn("probe.test", badges)
+                self.assertIn("badge/go-", text.split("</div>")[0])
+                self.assertNotIn("badge/website", text)
+                # an open-source README must not point at the init domain; it may not resolve
+                self.assertNotIn("probe.test", text)
             for target in re.findall(r"\]\(([^)#]+)(?:#[^)]*)?\)", text):
                 if not target.startswith("http"):
                     self.assertTrue((self.root / target).exists(), target)

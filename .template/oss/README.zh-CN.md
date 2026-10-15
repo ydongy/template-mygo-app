@@ -28,7 +28,7 @@ Template 是使用 Go 和 [MyGo](https://github.com/egoist/mygo) 原生 UI 编�
 
 ## 快速开始
 
-正式下载将发布在 https://example.com。首个版本发布前请自行构建：
+从源码构建并运行：
 
 ```bash
 go tool mygo dev     # 运行应用
