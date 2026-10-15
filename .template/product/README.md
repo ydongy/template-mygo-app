@@ -6,14 +6,14 @@ A native desktop application written in Go.
 
 [![License](https://img.shields.io/badge/license-proprietary-lightgrey.svg)](LICENSE)
 [![Go](https://img.shields.io/badge/go-1.27.1-00ADD8.svg)](.go-version)
-[![Website](https://img.shields.io/badge/website-example.com-informational.svg)](https://example.com)
+![Status](https://img.shields.io/badge/status-pre--release-orange)
 
 **English** · [简体中文](README.zh-CN.md)
 
 </div>
 
-Status: development baseline 0.1.0, a counter demonstration. No public release is available yet; see
-[the roadmap](docs/roadmap.md). Replace the baseline with the product specification before shipping.
+Status: pre-release. Template is not available yet; what remains before launch is in [docs/launch.md](docs/launch.md).
+The development baseline 0.1.0 is a counter demonstration; replace it with the product specification before shipping.
 
 ## Features
 
@@ -27,8 +27,7 @@ Status: development baseline 0.1.0, a counter demonstration. No public release i
 
 ## Quick start
 
-Official downloads will live at https://example.com. Development packages are local artifacts, not public signed
-releases. Verify signatures and checksums as the website instructs.
+There are no downloads yet. Development packages are local artifacts, not public signed releases.
 
 ## Development
 
@@ -47,6 +46,7 @@ Use `python3 scripts/bump.py <version>` to advance the version and both changelo
 | [docs/spec.md](docs/spec.md) | Behavior and acceptance |
 | [docs/design.md](docs/design.md) | Design language |
 | [docs/roadmap.md](docs/roadmap.md) | Release scope |
+| [docs/launch.md](docs/launch.md) | Launch checklist |
 | [docs/legal.md](docs/legal.md) | Legal facts and the code they must match |
 | [docs/website.md](docs/website.md) | What the app needs from the website |
 | [docs/releasing.md](docs/releasing.md) | How a release is made |
@@ -63,8 +63,8 @@ Contribution rules are in [CONTRIBUTING.md](CONTRIBUTING.md). Commit messages an
 
 ## Security
 
-Report vulnerabilities privately to support@example.com; do not open a public issue. Security reviews are kept in
-[docs/security/](docs/security/README.md).
+Report vulnerabilities as the account's security policy describes (GitHub private vulnerability reporting); do not
+open a public issue. Security reviews are kept in [docs/security/](docs/security/README.md).
 
 ## Acknowledgements
 
@@ -72,5 +72,5 @@ Built on [MyGo](https://github.com/egoist/mygo); dependency notices are in [THIR
 
 ## License
 
-Proprietary. All rights reserved. [LICENSE](LICENSE) contains the terms of service, to be published at
-https://example.com/terms.
+Proprietary. All rights reserved. [LICENSE](LICENSE) contains the terms of service, to be published on the product
+website at launch.

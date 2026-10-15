@@ -16,4 +16,7 @@ fixture, not real device captures:
 A UI change starts from the mockup: edit or add `screens/<screen>.html` (light and dark, every state), get the visual
 direction confirmed by the maintainer, then write the native view in `internal/ui/<screen>/` with theme roles,
 localized copy, accessible names and tests. Change the design text (`docs/design.md`, `tokens.md`) and the native view
-together. A headless test is not device acceptance. Commit only real device captures as screenshots.
+together. A headless test is not device acceptance.
+
+Screenshots of the running app are not tracked: local captures go to `design/screenshots/`, which `.gitignore`
+lists, and a UI pull request shows light and dark screenshots in its description.

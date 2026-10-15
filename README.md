@@ -69,9 +69,9 @@ scripts/init.sh <Name> <domain> [--license mit|proprietary] [--owner <github-use
 | | `--license mit` | `--license proprietary` |
 |---|---|---|
 | `LICENSE` | MIT | Terms of service, all rights reserved |
-| `README.md` and `README.zh-CN.md` | Open-source README with an MIT badge and a CI badge | Product README with a proprietary badge, no CI badge, and a documentation index |
+| `README.md` and `README.zh-CN.md` | Open-source README with an MIT badge and a CI badge | Product README with a proprietary badge and a pre-release status badge, no CI badge, and a documentation index |
 | Shared files | `CONTRIBUTING.md`, `AGENTS.md`, `CLAUDE.md`, `CHANGELOG.md`, `CODEOWNERS`, `ci.yml`, `pr-title.yml`, Dependabot | The same, with closed-source wording |
-| Extra documents | none | `docs/spec.md`, `legal.md`, `website.md`, `releasing.md`, `roadmap.md`, `docs/security/`, `CHANGELOG.zh.md` and a simplified `design/README.md` |
+| Extra documents | none | `docs/spec.md`, `legal.md`, `website.md`, `releasing.md`, `launch.md` (pre-release launch checklist), `roadmap.md`, `docs/security/`, `CHANGELOG.zh.md` and a simplified `design/README.md` |
 
 The skeleton files live in `.template/oss/` and `.template/product/`; `init.py` copies one of them over the tree,
 rewrites names, identifier and URLs in every text file (including both READMEs), and deletes `.template/`,

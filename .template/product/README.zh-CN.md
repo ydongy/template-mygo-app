@@ -6,13 +6,13 @@
 
 [![License](https://img.shields.io/badge/license-proprietary-lightgrey.svg)](LICENSE)
 [![Go](https://img.shields.io/badge/go-1.27.1-00ADD8.svg)](.go-version)
-[![Website](https://img.shields.io/badge/website-example.com-informational.svg)](https://example.com)
+![Status](https://img.shields.io/badge/status-pre--release-orange)
 
 [English](README.md) · **简体中文**
 
 </div>
 
-当前状态：开发基线 0.1.0，一个计数器演示，尚无公开发布版本，详见[路线图](docs/roadmap.md)。上线前请把基线替换为产品规格。
+当前状态：预发布。Template 尚未上线，上线前剩余的事项见 [docs/launch.md](docs/launch.md)。开发基线 0.1.0 是一个计数器演示，上线前请把它替换为产品规格。
 
 ## 功能特性
 
@@ -26,7 +26,7 @@
 
 ## 快速开始
 
-正式下载将发布在 https://example.com。开发包只是本地产物，不是公开的签名发布版；请按官网说明校验签名和校验和。
+目前还没有下载。开发包只是本地产物，不是公开的签名发布版。
 
 ## 开发
 
@@ -45,6 +45,7 @@ go tool mygo build         # 为当前平台打包
 | [docs/spec.md](docs/spec.md) | 行为与验收标准 |
 | [docs/design.md](docs/design.md) | 设计语言 |
 | [docs/roadmap.md](docs/roadmap.md) | 发布范围 |
+| [docs/launch.md](docs/launch.md) | 上线检查清单 |
 | [docs/legal.md](docs/legal.md) | 法律事实及必须与之一致的代码 |
 | [docs/website.md](docs/website.md) | 应用对官网的依赖 |
 | [docs/releasing.md](docs/releasing.md) | 发布流程 |
@@ -61,7 +62,7 @@ go tool mygo build         # 为当前平台打包
 
 ## 安全
 
-请私下将漏洞报告至 support@example.com，不要公开提 issue。各版本的安全审查保存在
+请按账号的安全策略（GitHub 私密漏洞报告）报告漏洞，不要公开提 issue。各版本的安全审查保存在
 [docs/security/](docs/security/README.md)。
 
 ## 致谢
@@ -70,4 +71,4 @@ go tool mygo build         # 为当前平台打包
 
 ## 许可证
 
-专有软件，保留所有权利。[LICENSE](LICENSE) 包含服务条款，将发布在 https://example.com/terms。
+专有软件，保留所有权利。[LICENSE](LICENSE) 包含服务条款，上线时将发布在产品官网上。

@@ -1,7 +1,10 @@
 # Contributing
 
-Template is closed source; this guide is for the maintainer, collaborators and any future contributor. Open an
-issue before a large change so the direction is agreed first.
+Template is closed source; this guide is for the maintainer, collaborators and any future contributor. Agent and
+repository rules are in [AGENTS.md](AGENTS.md).
+
+- Issues and pull requests may be written in English or Simplified Chinese.
+- Open an issue before a large change so the direction is agreed first.
 
 ## Development setup
 
@@ -15,15 +18,20 @@ go tool mygo dev             # run the app
 go tool mygo build           # package locally
 ```
 
+CI is one workflow, `.github/workflows/ci.yml`: a Linux job runs `scripts/check.sh --cross`, the secret scan of the
+history and `go test -race ./...` on every pull request and push to `main`. `package.yml` builds unsigned
+development packages on macOS, Windows and Linux only on manual dispatch.
+
 ## Commits, branches and pull requests
 
 - Commit messages and pull request titles follow [Conventional Commits](https://www.conventionalcommits.org/):
   `feat|fix|docs|refactor|perf|test|build|ci|chore|revert(scope)!: subject`. The scope is optional; usual ones:
   `app`, `example`, `i18n`, `scripts`, `docs`, `ci`. `pr-title.yml` checks the title.
 - Name branches `<type>/<issue>-<slug>`, for example `fix/12-counter-reset`.
-- The maintainer squash-merges. No sign-off is required.
+- The maintainer squash-merges, so the pull request title becomes the commit message. No DCO or sign-off is
+  required.
 - A UI change starts from the mockup in `design/screens/`; the maintainer confirms the visual direction before UI
-  code is written.
+  code is written. Screenshots (light and dark) go in the pull request body, not in the repository.
 - Keep a change focused and add or update tests.
 
 ## Changelog
