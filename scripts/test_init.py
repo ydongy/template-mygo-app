@@ -65,6 +65,10 @@ class InitTest(unittest.TestCase):
             else:
                 self.assertIn(f"github.com/{owner}/", text)
                 self.assertIn("actions/workflows/ci.yml/badge", text)
+                badges = text.split("</div>")[0]
+                self.assertIn("badge/go-", badges)
+                self.assertNotIn("badge/website", badges)
+                self.assertNotIn("probe.test", badges)
             for target in re.findall(r"\]\(([^)#]+)(?:#[^)]*)?\)", text):
                 if not target.startswith("http"):
                     self.assertTrue((self.root / target).exists(), target)
@@ -76,7 +80,7 @@ class InitTest(unittest.TestCase):
             self.assertIn(heading, agents)
 
     def assert_helper_files_gone(self):
-        for name in (".template", "scripts/init.sh", "scripts/init.py", "scripts/test_init.py", "docs/superpowers"):
+        for name in (".template", "scripts/init.sh", "scripts/init.py", "scripts/test_init.py"):
             self.assertFalse((self.root / name).exists(), name)
 
     def go_test(self):

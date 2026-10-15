@@ -20,3 +20,4 @@ All notable changes to this template are documented here. The format is based on
 - The proprietary skeleton starts pre-release: a status badge, `docs/launch.md` as the launch checklist, and no
   website badge, download address or support mailbox in the READMEs until launch.
 - Screenshots go in the pull request body; `design/screenshots/` is ignored, and `.editorconfig` covers Swift.
+- The open-source skeleton no longer adds a Website badge to the READMEs: init cannot know whether the site exists.

@@ -7,7 +7,6 @@
 [![CI](https://github.com/ydongy/template/actions/workflows/ci.yml/badge.svg)](https://github.com/ydongy/template/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Go](https://img.shields.io/badge/go-1.27.1-00ADD8.svg)](.go-version)
-[![Website](https://img.shields.io/badge/website-example.com-informational.svg)](https://example.com)
 
 [English](README.md) · **简体中文**
 
