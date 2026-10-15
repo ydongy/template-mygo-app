@@ -1,6 +1,7 @@
 /build/
 /.mygo/
 /.design-review/
+/design/screenshots/
 *.exe
 *.test
 __pycache__/

@@ -13,3 +13,10 @@ All notable changes to this template are documented here. The format is based on
 - The closed-source skeleton moved to `.template/product/`, the open-source one to `.template/oss/`.
 - `scripts/check.sh` no longer runs a documents check; `scripts/bump.py` treats `CHANGELOG.zh.md` as optional.
 - The skeletons no longer depend on shared workflows or an external documents check.
+- `AGENTS.md` (template and both skeletons) spells out the issue forms and the pull request body for `gh`, and the
+  red lines name `git add -A` of unknown files.
+- `CONTRIBUTING.md` states that issues and pull requests may be written in English or Simplified Chinese, and what
+  CI runs.
+- The proprietary skeleton starts pre-release: a status badge, `docs/launch.md` as the launch checklist, and no
+  website badge, download address or support mailbox in the READMEs until launch.
+- Screenshots go in the pull request body; `design/screenshots/` is ignored, and `.editorconfig` covers Swift.

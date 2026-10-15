@@ -20,9 +20,9 @@ forces the color scheme.
 
 ## Screens
 
-| Screen | Design file | Code dir | Status |
-|---|---|---|---|
-| Example | `screens/example.html`, `screens/example-appearance.html` | `internal/ui/example/` | fixture |
+| Screen | Design file | Code dir |
+|---|---|---|
+| Example | `screens/example.html`, `screens/example-appearance.html` | `internal/ui/example/` |
 
 A mockup maps to a package: `screens/<screen>.html` is implemented by `internal/ui/<screen>/`. The text and states in
 the mockup are the strings in that package's `copy.json` and the states its `Screen` can be in; the test in the
@@ -38,9 +38,5 @@ package covers each state.
 4. Run `scripts/check.sh`, then the acceptance checklist in `docs/design.md` on real devices. A headless test is not
    device acceptance.
 
-Commit only real device captures as screenshots.
-
-## Decision log
-
-2026-10-07: maintainer chose pure Go native UI. The neutral example has no screen sign-off or device acceptance;
-replace it with your own screens.
+Screenshots of the running app (light and dark, one per state) go in the pull request body, never in the
+repository; `design/screenshots/` is ignored for local captures.

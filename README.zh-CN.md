@@ -68,9 +68,9 @@ scripts/init.sh <Name> <domain> [--license mit|proprietary] [--owner <github-use
 | | `--license mit` | `--license proprietary` |
 |---|---|---|
 | `LICENSE` | MIT | 服务条款，保留所有权利 |
-| `README.md` 与 `README.zh-CN.md` | 开源 README，带 MIT 徽章和 CI 徽章 | 产品 README，带 proprietary 徽章、无 CI 徽章，并附文档索引 |
+| `README.md` 与 `README.zh-CN.md` | 开源 README，带 MIT 徽章和 CI 徽章 | 产品 README，带 proprietary 徽章和预发布状态徽章、无 CI 徽章，并附文档索引 |
 | 共有文件 | `CONTRIBUTING.md`、`AGENTS.md`、`CLAUDE.md`、`CHANGELOG.md`、`CODEOWNERS`、`ci.yml`、`pr-title.yml`、Dependabot | 同样这些，措辞改为闭源版本 |
-| 额外文档 | 无 | `docs/spec.md`、`legal.md`、`website.md`、`releasing.md`、`roadmap.md`、`docs/security/`、`CHANGELOG.zh.md` 和精简的 `design/README.md` |
+| 额外文档 | 无 | `docs/spec.md`、`legal.md`、`website.md`、`releasing.md`、`launch.md`（预发布阶段的上线检查清单）、`roadmap.md`、`docs/security/`、`CHANGELOG.zh.md` 和精简的 `design/README.md` |
 
 骨架文件位于 `.template/oss/` 与 `.template/product/`。`init.py` 把其中一份覆盖到工程上，改写所有文本文件中的名称、标识符和 URL
 （两份 README 同样会被改写），并删除 `.template/`、自身及其测试。生成项目的 `README.md` 与 `README.zh-CN.md`

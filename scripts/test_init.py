@@ -59,6 +59,8 @@ class InitTest(unittest.TestCase):
         for text in (en, zh):
             if proprietary:
                 self.assertIn("license-proprietary", text)
+                self.assertIn("status-pre--release", text)
+                self.assertNotIn("support@", text)
                 self.assertNotIn("actions/workflows/ci.yml/badge", text)
             else:
                 self.assertIn(f"github.com/{owner}/", text)
@@ -66,6 +68,12 @@ class InitTest(unittest.TestCase):
             for target in re.findall(r"\]\(([^)#]+)(?:#[^)]*)?\)", text):
                 if not target.startswith("http"):
                     self.assertTrue((self.root / target).exists(), target)
+
+    def assert_agents_guide(self):
+        agents = (self.root / "AGENTS.md").read_text()
+        for heading in ("## Issues and pull requests", "## Red lines", "## What happened", "## Done when",
+                        "## Suggested change", "## How tested", "git add -A"):
+            self.assertIn(heading, agents)
 
     def assert_helper_files_gone(self):
         for name in (".template", "scripts/init.sh", "scripts/init.py", "scripts/test_init.py", "docs/superpowers"):
@@ -96,9 +104,10 @@ class InitTest(unittest.TestCase):
             self.assertTrue((self.root / name).is_file(), name)
         for name in (".repo-type", ".docs-" "check.json", "GEMINI.md", "SECURITY.md", "CHANGELOG.zh.md",
                      ".github/copilot-instructions.md", ".github/workflows/docs.yml", "docs/spec.md",
-                     "docs/legal.md", "docs/roadmap.md", "docs/website.md", "docs/releasing.md", "docs/security",
+                     "docs/legal.md", "docs/roadmap.md", "docs/website.md", "docs/releasing.md", "docs/launch.md", "docs/security",
                      "docs/pro" "cess.md", "docs/mile" "stones"):
             self.assertFalse((self.root / name).exists(), name)
+        self.assert_agents_guide()
         self.assert_helper_files_gone()
         self.assert_neutral_names_gone()
         self.assert_no_banned_words()
@@ -139,7 +148,7 @@ class InitTest(unittest.TestCase):
         self.assertEqual((self.root / ".github/CODEOWNERS").read_text(), "* @ydongy\n")
         self.assertEqual((self.root / "CLAUDE.md").read_text().strip(), "@AGENTS.md")
         for name in ("README.md", "README.zh-CN.md", "docs/spec.md", "docs/design.md", "docs/legal.md", "docs/roadmap.md", "docs/website.md",
-                     "docs/releasing.md", "docs/security/README.md", "docs/adr/README.md", "design/README.md",
+                     "docs/releasing.md", "docs/launch.md", "docs/security/README.md", "docs/adr/README.md", "design/README.md",
                      "CONTRIBUTING.md", "CHANGELOG.md", "CHANGELOG.zh.md", "THIRD_PARTY.md", "AGENTS.md",
                      ".editorconfig", ".github/dependabot.yml", ".github/workflows/ci.yml",
                      ".github/workflows/pr-title.yml", ".github/workflows/package.yml"):
@@ -152,6 +161,7 @@ class InitTest(unittest.TestCase):
         self.assertNotIn("uses: ydongy/", ci)
         self.assertIn("scripts/check.sh", ci)
         self.assertNotIn("ORG_DOCS" "_ROOT", (self.root / "scripts/check.sh").read_text())
+        self.assert_agents_guide()
         self.assert_helper_files_gone()
         self.assert_neutral_names_gone()
         self.assert_no_banned_words()
